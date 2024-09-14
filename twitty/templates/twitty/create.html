@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} {% block title %} {{title}} {% endblock %} {% block
+content %}
+
+<div class="container">
+  <h1>{{title}}</h1>
+  <hr />
+
+  <div class="row mt-4">
+    <form method="post">
+      {% if session['no_of_twitty']<50 %}
+      <button class="btn btn-outline-success">
+        <i class="bi bi-database-fill-check"></i>
+        Create New Twitty
+      </button>
+      {% else %}
+      <button class="btn btn-outline-success disabled">
+        <i class="bi bi-database-fill-check"></i>
+        Create New Twitty
+      </button>
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="row mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Red</th>
+          <th scope="col">Green</th>
+          <th scope="col">Blue</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for twitty in twitties %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{twitty.red}}</td>
+          <td>{{twitty.green}}</td>
+          <td>{{twitty.blue}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1 @@
+from twitty import app

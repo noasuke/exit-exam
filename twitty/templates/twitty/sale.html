@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} {% block title %} {{title}} {% endblock %} {% block
+content %}
+
+<div class="container">
+  <h1>{{title}}</h1>
+  <hr />
+
+  <div class="row mt-4">
+    <h3 class="text-end">
+      Total Price: {% if session['total_price'] %} {{session['total_price'] |
+      round(2)}} $ {% else %} 0.0 $ {% endif %}
+    </h3>
+  </div>
+
+  <div class="row mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Color</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for twitty in twitties %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>RGB({{twitty.red}}, {{twitty.green}}, {{twitty.blue}})</td>
+          <td>{{twitty.price}}</td>
+          <td>{{twitty.status}}</td>
+          <td>
+            <a
+              href="{{url_for('sale', id=twitty.id)}}"
+              class="btn btn-outline-primary btn-sm"
+            >
+              <i class="bi bi-currency-dollar"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
