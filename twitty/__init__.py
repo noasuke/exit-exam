@@ -10,4 +10,6 @@ app.config['SECRET_KEY'] = b'diekdieikdiei90049olfk'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from twitty import routes, models
+
+
+from twitty import routes
