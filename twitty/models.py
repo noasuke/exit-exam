@@ -1,6 +1,7 @@
 from twitty import db
-from sqlalchemy import Integer, String, Float
+from sqlalchemy import Integer, String, Float, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
+import datetime
 
 class Twitty(db.Model):
   __tablename__ = 'twitty'
@@ -10,6 +11,8 @@ class Twitty(db.Model):
   blue: Mapped[int] = mapped_column(Integer, nullable=False)
   price: Mapped[float] = mapped_column(Float, nullable=False)
   status: Mapped[str] = mapped_column(String(10), nullable=False, default='sale')
+  created_at: Mapped[datetime.datetime] = mapped_column(DateTime(), default=datetime.datetime.now(datetime.timezone.utc))
+  updated_at: Mapped[datetime.datetime] = mapped_column(DateTime(), default=datetime.datetime.now(datetime.timezone.utc), onupdate=datetime.datetime.now)
 
   def __repr__(self):
     return f'RGB({self.red}, {self.green}, {self.blue})'

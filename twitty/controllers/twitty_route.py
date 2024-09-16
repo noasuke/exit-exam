@@ -55,4 +55,4 @@ def sale(id):
 
   db.session.commit()
   flash('Sold a twitty', 'warning')
-  return redirect(url_for('dashboard'))
+  return redirect(url_for('twitty_bp.dashboard'))
